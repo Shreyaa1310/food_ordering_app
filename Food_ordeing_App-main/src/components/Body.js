@@ -6,7 +6,9 @@ import {Link} from "react-router-dom";
 import userContext from "../utils/UserContext";
 import { SWIGGY_API } from "../utils/constants";
 import Footer from "./Footer";
-const Body = ()=>{
+// import RESTAURANT_MAIN from '../../env'
+const Body = () => {
+    const RESTAURANT_MAIN = Process.env.RESTAURANT_MAIN
     const [listOfRestaurent, setListOfRestaurent] = useState([]); //this is for storing all the cards (whenever i need to filter something, i'll use this variable)
     const [filteringRestaurent, setFilteringRestaurent] = useState([]); //this is for displaying the changes in the UI. it also contains the cards. but, changes will be undergoes in this variable.
    
@@ -21,7 +23,7 @@ const Body = ()=>{
 
     const {loggedUserId, setUserName} = useContext(userContext);
     const fetchData = async ()=>{
-        const data = await fetch("https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch(`${RESTAURANT_MAIN}`);
       
         const json = await data.json();
         //console.log(json?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);

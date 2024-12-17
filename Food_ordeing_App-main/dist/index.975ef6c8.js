@@ -35938,8 +35938,10 @@ var _constants = require("../utils/constants");
 var _footer = require("./Footer");
 var _footerDefault = parcelHelpers.interopDefault(_footer);
 var _s = $RefreshSig$();
+// import RESTAURANT_MAIN from '../../env'
 const Body = ()=>{
     _s();
+    const RESTAURANT_MAIN = Process.env.RESTAURANT_MAIN;
     const [listOfRestaurent, setListOfRestaurent] = (0, _react.useState)([]); //this is for storing all the cards (whenever i need to filter something, i'll use this variable)
     const [filteringRestaurent, setFilteringRestaurent] = (0, _react.useState)([]); //this is for displaying the changes in the UI. it also contains the cards. but, changes will be undergoes in this variable.
     const [inputValue, setInputValue] = (0, _react.useState)(""); //this is for tracking our input box.
@@ -35950,7 +35952,7 @@ const Body = ()=>{
     }, []);
     const { loggedUserId, setUserName } = (0, _react.useContext)((0, _userContextDefault.default));
     const fetchData = async ()=>{
-        const data = await fetch("https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch(`${RESTAURANT_MAIN}`);
         const json = await data.json();
         //console.log(json?.data?.success?.cards[3]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
         //console.log(json.data.success.cards[3].gridWidget.gridElements.infoWithStyle.restaurants);
@@ -35978,13 +35980,13 @@ const Body = ()=>{
         children: "Looks like you're offline, check your Internet Connection!"
     }, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 63,
+        lineNumber: 65,
         columnNumber: 16
     }, undefined);
     //conditional rendering.
     if (listOfRestaurent.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 68,
+        lineNumber: 70,
         columnNumber: 16
     }, undefined);
     const searchData = ()=>{};
@@ -36007,7 +36009,7 @@ const Body = ()=>{
                             }
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 80,
+                            lineNumber: 82,
                             columnNumber: 17
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -36020,18 +36022,18 @@ const Body = ()=>{
                             children: "search"
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 92,
+                            lineNumber: 94,
                             columnNumber: 17
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 79,
+                    lineNumber: 81,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 78,
+                lineNumber: 80,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36046,41 +36048,41 @@ const Body = ()=>{
                             restObj: restaurant
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 137,
+                            lineNumber: 139,
                             columnNumber: 25
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _restaurentCardDefault.default), {
                             restObj: restaurant
                         }, restaurant.info.id, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 139,
+                            lineNumber: 141,
                             columnNumber: 25
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 132,
+                        lineNumber: 134,
                         columnNumber: 24
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 127,
+                lineNumber: 129,
                 columnNumber: 17
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "mt-80",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footerDefault.default), {}, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 146,
+                    lineNumber: 148,
                     columnNumber: 13
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 145,
+                lineNumber: 147,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 77,
+        lineNumber: 79,
         columnNumber: 9
     }, undefined);
 };
@@ -39097,12 +39099,13 @@ var _react = require("react");
 var _s = $RefreshSig$();
 const useRestaurantMenu = (resId)=>{
     _s();
+    const RESTAURANT_DETAIL = Process.env.RESTAURANT_DETAIL;
     const [resInfo, setResInfo] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetchData();
     }, []);
     const fetchData = async ()=>{
-        const data = await fetch("https://foodfire.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=21.1702401&lng=72.83106070000001&&submitAction=ENTER&restaurantId=" + resId);
+        const data = await fetch(`${RESTAURANT_DETAIL}` + resId);
         const json = await data.json();
         console.log(json);
         setResInfo(json);
